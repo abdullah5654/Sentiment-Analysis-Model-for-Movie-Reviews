@@ -1,0 +1,11 @@
+from joblib import load
+
+model_data = load('sentiment_model.joblib')
+model = model_data['model']
+vectorizer = model_data['vectorizer']
+
+new_review = "i hate this movie, it was terrible and boring"
+prediction = model.predict(vectorizer.transform([new_review]))[0]
+
+
+print("Positive" if prediction in ["pos", "positive", 1] else "Negative")
